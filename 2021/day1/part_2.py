@@ -1,6 +1,3 @@
-import os
-
-
 def parse_file(file_name: str) -> list[int]:
     with open(file_name, "r") as f:
         return list(map(lambda num: int(num), f.readlines()))
