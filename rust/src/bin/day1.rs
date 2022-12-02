@@ -1,8 +1,8 @@
-fn part_1(total_calories_per_elf: &[usize]) {
+fn max_elf(total_calories_per_elf: &[usize]) {
     println!("most calories single elf: {}", total_calories_per_elf.iter().max().unwrap())
 }
 
-fn part_2(total_calories_per_elf: &mut [usize]) {
+fn max_top_3_elves(total_calories_per_elf: &mut [usize]) {
     total_calories_per_elf.sort();
 
     println!("most calories top 3 elves: {}", total_calories_per_elf.iter().rev().take(3).sum::<usize>())
@@ -16,10 +16,10 @@ fn main() {
         .map(|s| {
             s.split('\n')
                 .flat_map(|s| s.parse::<usize>())
-                .sum::<usize>()
+                .sum()
         })
         .collect();
 
-    part_1(&total_calories_per_elf);
-    part_2(&mut total_calories_per_elf);
+    max_elf(&total_calories_per_elf);
+    max_top_3_elves(&mut total_calories_per_elf);
 }
