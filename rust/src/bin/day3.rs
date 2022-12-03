@@ -11,6 +11,7 @@ fn get_priority_list() -> HashMap<char, usize> {
     priority_list
 }
 
+// this would be the same as find_same_group(&[first, second])
 fn find_same_compartments(first: &str, second: &str) -> Option<char> {
     let first_set = first.chars().collect::<HashSet<char>>();
     let second_set = second.chars().collect::<HashSet<char>>();
