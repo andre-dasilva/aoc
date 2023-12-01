@@ -19,20 +19,49 @@ defmodule Day1 do
     |> Enum.sum()
   end
 
-  defp find_number(keywords, search) do
-    Enum.reduce(keywords, search, fn {keyword, value}, acc ->
-      pattern = Atom.to_string(keyword)
+  defp find_number_in_text(line, keyword, value, numbers) do
+    string_keyword = Atom.to_string(keyword)
 
-      if String.contains?(acc, pattern) do
-        value <> acc
-      else
-        acc
-      end
-    end)
+    case :binary.match(line, string_keyword) do
+      {pos, len} ->
+        new_text = String.replace(line, string_keyword, String.duplicate("_", len), global: false)
+
+        if new_text == line do
+          numbers
+        else
+          numbers = numbers ++ [{pos, value}]
+
+          find_number_in_text(new_text, keyword, value, numbers)
+        end
+
+      :nomatch ->
+        numbers
+    end
+  end
+
+  defp find_all_number(keywords, line) do
+    text_numbers =
+      Enum.reduce(keywords, [], fn {keyword, value}, acc ->
+        find_number_in_text(line, keyword, value, acc)
+      end)
+
+    numbers =
+      String.graphemes(line)
+      |> Enum.with_index()
+      |> Enum.flat_map(fn {char, pos} ->
+        case(Integer.parse(char)) do
+          {_, _} -> [{pos, char}]
+          :error -> []
+        end
+      end)
+
+    (text_numbers ++ numbers)
+    |> Enum.sort_by(fn {pos, _} -> pos end)
+    |> Enum.map(fn {_, number} -> number end)
   end
 
   def part_2(input) do
-    keywords = %{
+    keywords = [
       one: "1",
       two: "2",
       three: "3",
@@ -42,31 +71,13 @@ defmodule Day1 do
       seven: "7",
       eight: "8",
       nine: "9"
-    }
+    ]
 
     File.stream!(input)
     |> Stream.map(&String.trim/1)
     |> Stream.map(fn line ->
-      IO.inspect(line)
-
-      numbers =
-        Enum.reduce(String.graphemes(line), "", fn char, acc ->
-          search = acc <> char
-          find_number(keywords, search)
-        end)
-        |> String.graphemes()
-        |> Enum.filter(fn
-          char ->
-            case(Integer.parse(char)) do
-              {_, ""} -> true
-              :error -> false
-            end
-        end)
-
-      [List.first(numbers), List.last(numbers)]
-      |> IO.inspect()
-      |> Enum.join("")
-      |> String.to_integer()
+      numbers = find_all_number(keywords, line)
+      String.to_integer(List.first(numbers) <> List.last(numbers))
     end)
     |> Enum.sum()
   end
