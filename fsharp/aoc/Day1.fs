@@ -52,8 +52,6 @@ let part_2 (input: string) =
                     | None -> Some 1))
             (Map.empty)
 
-    printfn "%A" rightValueAppearance
-
     left
     |> List.fold
         (fun acc (item: int) ->
