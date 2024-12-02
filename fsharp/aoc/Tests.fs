@@ -9,8 +9,6 @@ let readFile (fileName: string) : string =
     let path = Path.Combine(BaseDir, fileName)
     File.ReadAllText(path)
 
-
-
 [<Fact>]
 let ``Day 1 - Part 1`` () =
     let input =
@@ -23,7 +21,6 @@ let ``Day 1 - Part 1`` () =
 
     // let input = readFile "day1/input.txt"
     Assert.Equal((Day1.part_1 input), 11)
-
 
 [<Fact>]
 let ``Day 1 - Part 2`` () =

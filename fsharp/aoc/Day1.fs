@@ -21,7 +21,6 @@ let findLeftAndRightColumn (input: string) =
 
     List.rev left, List.rev right
 
-
 let part_1 (input: string) =
     let left, right = findLeftAndRightColumn input
 
