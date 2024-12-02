@@ -36,7 +36,6 @@ let part_1 (input: string) =
             acc + (abs (left - right)))
         0
 
-
 let part_2 (input: string) =
     let left, right = findLeftAndRightColumn input
 
