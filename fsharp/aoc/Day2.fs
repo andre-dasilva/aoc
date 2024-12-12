@@ -53,7 +53,7 @@ let part_2 (input: string) =
 
             match safeOrUnsafeLine removedOneLevel with
             | Safe ->
-                printfn "Safe: %A by removing the %A level, %A" line (currentIndex + 1) line[currentIndex]
+                // printfn "Safe: %A by removing the %A level, %A" line (currentIndex + 1) line[currentIndex]
                 Safe
             | Unsafe -> checkSafeOrUnsafeByRemovingOneLevel line (currentIndex + 1)
         else
@@ -67,7 +67,7 @@ let part_2 (input: string) =
         (fun (safeOrUnsafe, line) ->
             match safeOrUnsafe with
             | Safe ->
-                printfn "Safe: %A is safe without removing any level" line
+                // printfn "Safe: %A is safe without removing any level" line
                 Safe
             | Unsafe -> checkSafeOrUnsafeByRemovingOneLevel line 0)
     )
