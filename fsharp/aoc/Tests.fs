@@ -80,7 +80,18 @@ let ``Day 3 - Part 2`` () =
 
 [<Fact>]
 let ``Day 4 - Part 1`` () =
-    let input = ""
+    let input =
+        """MMMSXXMASM
+    MSAMXMSMSA
+    AMXSXMAAMM
+    MSAMASMSMX
+    XMASAMXAMM
+    XXAMMXXAMA
+    SMSMSASXSS
+    SAXAMASAAA
+    MAMMMXMMMM
+    MXMXAXMASX
+    """
 
     // let input = readFile "day3.txt"
-    Assert.Equal((Day4.part_1 input), 0)
+    Assert.Equal((Day4.part_1 input), 18)
