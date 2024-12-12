@@ -6,6 +6,7 @@
     <OutputType>Library</OutputType>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="aoc/Day4.fs" />
     <Compile Include="aoc/Day3.fs" />
     <Compile Include="aoc/Day2.fs" />
     <Compile Include="aoc/Day1.fs" />
