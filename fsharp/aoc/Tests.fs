@@ -46,5 +46,5 @@ let ``Day 2 - Part 1`` () =
     8 6 4 4 1
     1 3 6 7 9"""
 
-    // let input = readFile "day1/input.txt"
+    // let input = readFile "day2/input.txt"
     Assert.Equal((Day2.part_1 input), 2)
